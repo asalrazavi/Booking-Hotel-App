@@ -23,20 +23,12 @@ export default function Map({ markerLocations }) {
   } = useGeoLocation();
 
   useEffect(() => {
-    if (lat && lng) {
-      console.log("Setting map center from URL location:", [lat, lng]);
-      setMapCenter([lat, lng]);
-    }
+    if (lat && lng) setMapCenter([lat, lng]);
   }, [lat, lng]);
 
   useEffect(() => {
-    if (geoLocationPosition?.lat && geoLocationPosition?.lng) {
-      console.log("Setting map center from geolocation:", [
-        geoLocationPosition.lat,
-        geoLocationPosition.lng,
-      ]);
+    if (geoLocationPosition?.lat && geoLocationPosition?.lng)
       setMapCenter([geoLocationPosition.lat, geoLocationPosition.lng]);
-    }
   }, [geoLocationPosition]);
 
   return (

@@ -25,10 +25,8 @@ export default function AddNewBookmark() {
   const [isLoadingGeoCoding, setIsLoadingGeoCoding] = useState(false);
   const [geoCodingError, setGeoCodingError] = useState(null);
 
-  console.log(lat, lng);
-
   useEffect(() => {
-    // if (!lat || !lng) return;
+    if (!lat || !lng) return;
 
     async function fetchLocation() {
       setIsLoadingGeoCoding(true);
@@ -37,7 +35,7 @@ export default function AddNewBookmark() {
         const { data } = await axios.get(
           `${BASE_GEOCODING_URL}?latitude=${lat}&longitude=${lng}`
         );
-        console.log("Geocoding Data:", data);
+        // console.log("Geocoding Data:", data);
         if (!data.countryCode)
           throw new Error(
             "this location is not a city! please click somewhere else."
@@ -48,7 +46,7 @@ export default function AddNewBookmark() {
         // setCountryCode(getFlagEmoji(data.countryCode));
       } catch (error) {
         setGeoCodingError(error.message);
-        console.log(error);
+        // console.log(error);
       } finally {
         setIsLoadingGeoCoding(false);
       }
